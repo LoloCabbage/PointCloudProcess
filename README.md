@@ -13,7 +13,7 @@ This could make the operation very slow, so we strongly recommend to change the 
 
 -Input data: ../data/process
 
--Output data:../data/result
+-Output data:../data/output
 ## data
   include the processed data and result data 
 ### Process
