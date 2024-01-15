@@ -20,7 +20,7 @@ This could make the operation very slow, so we strongly recommend to change the 
     1.thinning data -> used to test
     2.buffering data -> used in step3
     3.filter.laz -> used in step4
-### Result 
+### Result (All the results and output is stored in ../data/output)
     1.dtm.tiff <- output of step3
     2.step4.tiff <- output of step4
     3.chm.tiff <- output of step5
