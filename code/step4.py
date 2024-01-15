@@ -130,14 +130,14 @@ def write_raster(data, header, res):
     """
     transform = rasterio.transform.from_origin(header.x_min, header.y_max, res, res)
     crs = 'EPSG:28992'
-    with rasterio.open(f'../data/result/step4_{res}.tiff', 'w', driver='GTiff',
+    with rasterio.open(f'../data/output/step4_{res}.tiff', 'w', driver='GTiff',
                        height=data.shape[0], width=data.shape[1],nodata=-9999,
                        count=1, dtype=data.dtype,
                        crs=crs, transform=transform) as dst:
         dst.write(data, 1)
 
 
-def step4(file_path = '../data/output_tile_4_filtered.laz',res = 0.5):
+def step4(file_path = '../data/processed/filtered.laz',res = 0.5):
     print("Step4 Starts!")
     las, header = read_point_cloud(file_path)
     # select unclassified points
