@@ -19,7 +19,7 @@ This could make the operation very slow, so we strongly recommend to change the 
 ### Process
     1.thinning data -> used to test
     2.buffering data -> used in step3
-    3.filtering data (outlier removed) -> used in step4
+    3.filter.laz -> used in step4
 ### Result 
     1.dtm.tiff <- output of step3
     2.step4.tiff <- output of step4
