@@ -137,22 +137,26 @@ def write_raster(data, header, res):
         dst.write(data, 1)
 
 
-def step4(file_path = '../data/processed/filtered.laz',res = 0.5):
+def step4(file_path = '../data/processed/tile_500_filtered.laz',res = 0.5):
     print("Step4 Starts!")
     las, header = read_point_cloud(file_path)
-    # select unclassified points
-    grid_veg = select_class(las, 1)
-    # exclude points with only one return
-    grid_veg = grid_veg[grid_veg.number_of_returns > 1]
+    # select unclassified points and ground points
+    grid_veg = select_class(las, 1,2)
+    # split point cloud into grids
     grids,size,grid_centers = split_point_cloud(grid_veg,header,res)
     height = []
+    # generate height raster of vegetation points and average height of ground points
     for grid in tqdm(grids, desc="Generating height raster"):
         if grid is not None:
             # judge if the grid has vegetation
             if has_veg(grid):
-                height.append(max(grid.z))
-            else: # nodata for no vegetation grids
-                height.append(-9999)
+                if len(grid[grid.number_of_returns > 1]) == 0:
+                    # no vegetation points ,add average height of ground points
+                    height.append(np.mean(grid.z[grid.classification == 2]))
+                else: # has vegetation points, add the highest vegetation point
+                    height.append(max(grid.z[grid.number_of_returns > 1]))
+            else: # no vegetation
+                height.append(np.mean(grid.z[grid.classification == 2]))
         else: # nodata for empty grids(no valid points)
             height.append(-9999)
 
