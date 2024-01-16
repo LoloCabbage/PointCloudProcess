@@ -163,7 +163,7 @@ def step4(file_path = '../data/processed/tile_500_filtered.laz',res = 0.5):
     # reshape and reorganize the height array for output
     height = np.array(height).reshape(size[0],size[1])
     height = np.flipud(height)
-
+    print(type(height))
     write_raster(height,header,res)
     print("Step4 Finished!")
 
