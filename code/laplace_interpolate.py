@@ -164,6 +164,8 @@ def write_raster(input_data, header, output, res):
             A GeoTiff file
     """
     transform = rasterio.transform.from_origin(header.x_min, header.y_max, res, res)
+    print(header.x_min)
+    print(header.y_max)
     crs = 'EPSG:28992'
     with rasterio.open(output, 'w',
                        driver='GTiff',
@@ -184,15 +186,20 @@ if __name__ == '__main__':
     grid = generate_grid([188465,188965,311800,312300], res)
     # get the cell centers coordinates
     cell_center = grid[0]
+    print(cell_center)
     # get the number of grid rows
     grid_row = grid[1]
     # get the number of grid columns
     grid_column = grid[2]
     # read the laz data
     data_original = read_laz_file("600_GP_output_threshold.laz")
+
     # transform numpy array to list
     data_points = data_original[0].tolist()
     # use the data to perform Laplace interpolation
     laplace_result = laplace_interpolant(data_points, cell_center, grid_row, grid_column)
+
     # write the data into GeoTiff format
-    write_raster(laplace_result, data_original[1], 'dtm_0.5m.tiff',res)
+    # extract origin from the 500*500 data
+    data_500_header = read_laz_file('500_500_bbx.laz')[1]
+    write_raster(laplace_result, data_500_header, 'dtm_0.5m.tiff',res)
