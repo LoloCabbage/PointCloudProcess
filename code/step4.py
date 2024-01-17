@@ -149,12 +149,12 @@ def step4(file_path = '../data/processed/tile_500_filtered.laz',res = 0.5):
     for grid in tqdm(grids, desc="Generating height raster"):
         if grid is not None:
             # judge if the grid has vegetation
-            if has_veg(grid):
-                if len(grid[grid.number_of_returns > 1]) == 0:
-                    # no vegetation points ,add average height of ground points
-                    height.append(np.mean(grid.z[grid.classification == 2]))
-                else: # has vegetation points, add the highest vegetation point
+            if len(grid[grid.number_of_returns > 1]) != 0:
+                # has vegetation points, add the highest vegetation poi
+                if has_veg(grid):
                     height.append(max(grid.z[grid.number_of_returns > 1]))
+                else: # no vegetation points ,add average height of ground points
+                    height.append(np.mean(grid.z[grid.classification == 2]))
             else: # no vegetation
                 height.append(np.mean(grid.z[grid.classification == 2]))
         else: # nodata for empty grids(no valid points)
@@ -163,9 +163,9 @@ def step4(file_path = '../data/processed/tile_500_filtered.laz',res = 0.5):
     # reshape and reorganize the height array for output
     height = np.array(height).reshape(size[0],size[1])
     height = np.flipud(height)
-    print(type(height))
     write_raster(height,header,res)
     print("Step4 Finished!")
+    return height
 
 if __name__ == '__main__':
     step4()
