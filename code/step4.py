@@ -131,7 +131,7 @@ def write_raster(data, header, res):
     transform = rasterio.transform.from_origin(header.x_min, header.y_max, res, res)
     crs = 'EPSG:28992'
     with rasterio.open(f'../data/output/step4_{res}.tiff', 'w', driver='GTiff',
-                       height=data.shape[0], width=data.shape[1],nodata=-9999,
+                       height=data.shape[0], width=data.shape[1],nodata=np.nan,
                        count=1, dtype=data.dtype,
                        crs=crs, transform=transform) as dst:
         dst.write(data, 1)
@@ -158,7 +158,7 @@ def step4(file_path = '../data/processed/tile_500_filtered.laz',res = 0.5):
             else: # no vegetation
                 height.append(np.mean(grid.z[grid.classification == 2]))
         else: # nodata for empty grids(no valid points)
-            height.append(-9999)
+            height.append(np.nan)
 
     # reshape and reorganize the height array for output
     height = np.array(height).reshape(size[0],size[1])

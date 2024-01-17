@@ -9,3 +9,6 @@ data/output/step4_50.tiff
 code/__pycache__/step4.cpython-310.pyc
 code/__pycache__/step4.cpython-310.pyc
 *.pyc
+data/output/step4_20.tiff
+*.png
+*.pyc
