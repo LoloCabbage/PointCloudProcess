@@ -28,6 +28,7 @@ This could make the operation very slow, so we strongly recommend to change the 
 ### Process
     1.tile_500_filtered.laz -> used in step4
     2.600_GP_output_threshold.laz -> used in interpolation/step4
+    3. 600_thinned_025_filtered.lax -> used in finding ground points
 ### Result (All the results and output is stored in ../data/output)
     1.dtm.tiff <- output of interpolation
     2.step4.tiff <- output of step4
