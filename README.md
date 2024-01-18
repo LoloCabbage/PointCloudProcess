@@ -9,6 +9,7 @@ Include all the code used to cropping(buffering ), thinning, and filtering.
 Written in Jupyter notebook, it can be run directly after downloading the code and required data(given AHN4).
 ### GFTIN
 Code: **GFTIN_final.ipynb** and **GFTIN_final_pyVer.ipynb**
+
 Also mainly written in Jupyter Notebook, you can optionally output it to a laz file (or csv file) for later interpolation.
 Additionally, this **GFTIN_final.ipynb** file explains the idea of ​​setting thresholds. If you don't need the relevant code, you can execute the **GFTIN_final_pyVer.py** file. Please also remember to download the data **600_thinned_025_filtered.laz**. Please note that the **GFTIN_final_pyVer.py** file contains less content and the hyperparameters are all set. It is a file deleted from **GFTIN_final.ipynb**.(Highly not recommended use **GFTIN_final_pyVer.py**.)
 
