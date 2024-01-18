@@ -4,8 +4,11 @@ This is the repository for geo1015 assignment 4.
 include all codes used in the assignment
 ### Proprocessing
 **cropping_final.ipynb**
+
 **thining+outlier_final.ipynb**
+
 Include all the code used to cropping(buffering ), thinning, and filtering. 
+
 Written in Jupyter notebook, it can be run directly after downloading the code and required data.
 ### GFTIN
 **GFTIN_final.ipynb**
