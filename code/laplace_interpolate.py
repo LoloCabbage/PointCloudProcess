@@ -164,8 +164,6 @@ def write_raster(input_data, header, output, res):
             A GeoTiff file
     """
     transform = rasterio.transform.from_origin(header.x_min, header.y_max, res, res)
-    print(header.x_min)
-    print(header.y_max)
     crs = 'EPSG:28992'
     with rasterio.open(output, 'w',
                        driver='GTiff',
@@ -178,21 +176,18 @@ def write_raster(input_data, header, output, res):
                        transform=transform) as dst:
         dst.write(input_data, 1)
 
-
-if __name__ == '__main__':
-    # set a resolution
-    res = 0.5
+def laplace(res = 0.5):
+    print("Laplace interpolation starts")
     # bounding box: 500*500 min_x, max_x, min_y, max_y = 188415+50, 189015-50, 311750+50, 312350-50
     grid = generate_grid([188465,188965,311800,312300], res)
     # get the cell centers coordinates
     cell_center = grid[0]
-    print(cell_center)
     # get the number of grid rows
     grid_row = grid[1]
     # get the number of grid columns
     grid_column = grid[2]
     # read the laz data
-    data_original = read_laz_file("600_GP_output_threshold.laz")
+    data_original = read_laz_file("../data/processed/600_GP_output_threshold.laz")
 
     # transform numpy array to list
     data_points = data_original[0].tolist()
@@ -201,5 +196,30 @@ if __name__ == '__main__':
 
     # write the data into GeoTiff format
     # extract origin from the 500*500 data
-    data_500_header = read_laz_file('500_500_bbx.laz')[1]
-    write_raster(laplace_result, data_500_header, 'dtm_0.5m.tiff',res)
+    data_500_header = read_laz_file('../data/processed/tile_500_filtered.laz')[1]
+    write_raster(laplace_result, data_500_header, f'../data/output/dtm_{res}.tiff',res)
+    print("DTM generated")
+
+if __name__ == '__main__':
+    laplace()
+    # res = 50
+    # # bounding box: 500*500 min_x, max_x, min_y, max_y = 188415+50, 189015-50, 311750+50, 312350-50
+    # grid = generate_grid([188465,188965,311800,312300], res)
+    # # get the cell centers coordinates
+    # cell_center = grid[0]
+    # # get the number of grid rows
+    # grid_row = grid[1]
+    # # get the number of grid columns
+    # grid_column = grid[2]
+    # # read the laz data
+    # data_original = read_laz_file("../data/processed/600_GP_output_threshold.laz")
+    #
+    # # transform numpy array to list
+    # data_points = data_original[0].tolist()
+    # # use the data to perform Laplace interpolation
+    # laplace_result = laplace_interpolant(data_points, cell_center, grid_row, grid_column)
+    #
+    # # write the data into GeoTiff format
+    # # extract origin from the 500*500 data
+    # data_500_header = read_laz_file('../data/processed/tile_500_filtered.laz')[1]
+    # write_raster(laplace_result, data_500_header, f'../data/output/dtm_{res}.tiff',res)

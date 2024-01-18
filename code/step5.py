@@ -31,4 +31,4 @@ def step5():
     step5[step5 < 0] = 0
 
     write_raster(step5, meta4)
-    print("Step5 Finished!")
+    print("CHM generated!")

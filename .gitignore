@@ -12,3 +12,5 @@ code/__pycache__/step4.cpython-310.pyc
 data/output/step4_20.tiff
 *.png
 *.pyc
+data/output/dtm_50.tiff
+code/dtm_0.5m.tiff

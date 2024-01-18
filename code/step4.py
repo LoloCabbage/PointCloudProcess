@@ -164,7 +164,7 @@ def step4(file_path = '../data/processed/tile_500_filtered.laz',res = 0.5):
     height = np.array(height).reshape(size[0],size[1])
     height = np.flipud(height)
     write_raster(height,header,res)
-    print("Step4 Finished!")
+    print("Vegetation-DSM generated!")
     return height
 
 if __name__ == '__main__':
