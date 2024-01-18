@@ -3,8 +3,14 @@ This is the repository for geo1015 assignment 4.
 ## Code 
 include all codes used in the assignment
 ### Proprocessing
-include all the code used to thinning,filtering,buffering 
-just click "run" then you can test them
+**cropping_final.ipynb**
+**thining+outlier_final.ipynb**
+Include all the code used to cropping(buffering ), thinning, and filtering. 
+Written in Jupyter notebook, it can be run directly after downloading the code and required data.
+### GFTIN
+**GFTIN_final.ipynb**
+It is also written in Jupyter notebook, and you can choose to output it into a laz file (or csv file) for later interpolation.
+In addition, this **GFTIN_final.ipynb** file explains the idea of ​​setting threshold. If you do not need the relevant code, you can run the **GFTIN_final.py** file.
 ### Main.py
 Main.py is used to run the steps integrately.
 You can run any of the step3 (interpolation) to 5 in it with the parameters you set.
