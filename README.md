@@ -19,9 +19,11 @@ You can run any of the step3 (interpolation) to 5 in it with the parameters you 
 All the file and parameters of the functions in Main.py have been set defaultly according to the requirements of the assignment.(eg. the default output resolution is 0.5m).
 This could make the operation very slow, so we strongly recommend to change the resolution parameters to a smaller number.
 
--Input data: ../data/process
+All the input and output data are stored in these two pathes.
 
--Output data:../data/output
+**-Input data: ../data/process**
+
+**-Output data:../data/output**
 ## data
   include the processed data and result data 
 ### Process
