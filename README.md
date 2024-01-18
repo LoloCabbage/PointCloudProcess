@@ -13,8 +13,8 @@ Code: **GFTIN_final.ipynb** and **GFTIN_final_pyVer.ipynb**
 Also mainly written in Jupyter Notebook, you can optionally output it to a laz file (or csv file) for later interpolation.
 Additionally, this **GFTIN_final.ipynb** file explains the idea of ​​setting thresholds. If you don't need the relevant code, you can execute the **GFTIN_final_pyVer.py** file. Please also remember to download the data **600_thinned_025_filtered.laz**. Please note that the **GFTIN_final_pyVer.py** file contains less content and the hyperparameters are all set. It is a file deleted from **GFTIN_final.ipynb**.(Highly not recommended use **GFTIN_final_pyVer.py**.)
 
-### Main.py
-Main.py is used to run the steps integrately.
+### main.py
+main.py is used to run the steps integrately.
 You can run any of the step3 (interpolation) to 5 in it with the parameters you set.
 All the file and parameters of the functions in Main.py have been set defaultly according to the requirements of the assignment.(eg. the default output resolution is 0.5m).
 This could make the operation very slow, so we strongly recommend to change the resolution parameters to a smaller number.
